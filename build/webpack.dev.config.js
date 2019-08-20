@@ -8,7 +8,11 @@ const baseConfig = require("./webpack.base.config");
 const devConfig = {
   devtool: "inline-source-map",
   entry: {
-    app: ["react-hot-loader/patch", path.join(__dirname, "../src/index.js")]
+    app: [
+      // "babel-polyfill",
+      "react-hot-loader/patch",
+      path.join(__dirname, "../src/index.js")
+    ]
   },
   output: {
     filename: "[name].[hash].js",
@@ -19,9 +23,18 @@ const devConfig = {
     contentBase: path.join(__dirname, "../dist"),
     historyApiFallback: true,
     port: 8080
+    // open: true
     // host: "0.0.0.0"
     // hot: true
   },
+  // module: {
+  //   rules: [
+  //     {
+  //       test: /\.css$/,
+  //       loader: "style-loader!css-loader"
+  //     }
+  //   ]
+  // },
   resolve: {
     alias: {
       "react-dom": "@hot-loader/react-dom"

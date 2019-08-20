@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "../../../config/index";
 
 export default store => next => action => {
   const { dispatch, getState } = store;
@@ -41,6 +42,11 @@ export default store => next => action => {
       type: FAILURE
     });
   };
+
+  const instance = axios.create({
+    baseURL: config.host,
+    timeout: 5000
+  });
 
   return promise(axios)
     .then(onFulfilled, onRejected)

@@ -2,7 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -34,10 +33,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
+        rules: [
+          {
+            test: /\.css$/,
+            loader: "style-loader!css-loader"
+          }
+        ]
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -54,7 +55,9 @@ module.exports = {
     alias: {
       pages: path.join(__dirname, "../src/pages"),
       components: path.join(__dirname, "../src/components"),
-      router: path.join(__dirname, "../src/router")
+      router: path.join(__dirname, "../src/router"),
+      mock: path.join(__dirname, "../mock"),
+      until: path.join(__dirname, "../src/utils")
     }
   },
   // plugins: [new webpack.HotModuleReplacementPlugin()]
@@ -70,9 +73,8 @@ module.exports = {
         ignore: [".*"]
       }
     ]),
-    new ExtractTextPlugin({
-      filename: "static/css/[name].[md5:contenthash:hex:20].css",
-      allChunks: true
+    new webpack.DefinePlugin({
+      Mock: true
     })
   ],
   optimization: {

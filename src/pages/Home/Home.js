@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { resolve } from "path";
+import { rejects } from "assert";
 
 export default class Home extends Component {
   constructor(props) {
@@ -8,7 +10,23 @@ export default class Home extends Component {
     };
   }
 
+  testPromise(str) {
+    return new Promise((resolve, injected) => {
+      if (str) {
+        resolve(str);
+      }
+      injected("not a null~");
+    });
+  }
   _handleClick() {
+    this.testPromise("haha")
+      .then(res => {
+        console.log("haha", res);
+      })
+      .catch(err => {
+        console.log("err", err);
+      });
+    console.log(["a", "b"].includes("a"));
     this.setState({
       count: ++this.state.count
     });

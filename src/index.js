@@ -5,6 +5,10 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import App from "components/App/App";
 
+if (Mock) {
+  require("mock/mock");
+}
+
 renderWithHotReload(App);
 if (module.hot) {
   module.hot.accept("components/App/App", () => {
