@@ -1,0 +1,131 @@
+// @import "https://at.alicdn.com/t/font_120445_oqs1yn58f5.css";
+@font-face {
+  font-family: "iconfont"; /* project id 120445 */
+  src: url("//at.alicdn.com/t/font_120445_oqs1yn58f5.eot");
+  src: url("//at.alicdn.com/t/font_120445_oqs1yn58f5.eot?#iefix")
+      format("embedded-opentype"),
+    url("//at.alicdn.com/t/font_120445_oqs1yn58f5.woff2") format("woff2"),
+    url("//at.alicdn.com/t/font_120445_oqs1yn58f5.woff") format("woff"),
+    url("//at.alicdn.com/t/font_120445_oqs1yn58f5.ttf") format("truetype"),
+    url("//at.alicdn.com/t/font_120445_oqs1yn58f5.svg#iconfont") format("svg");
+}
+
+$main: #ffa822;
+$default: #999;
+
+.rate-box {
+  padding: 50px;
+  .rate-content {
+    display: flex;
+    flex-flow: row-reverse;
+    justify-content: flex-end;
+    input {
+      -webkit-appearance: none;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      &[name="rate"] {
+        font-family: "iconfont";
+        font-size: 30px;
+        padding-right: 10px;
+        margin: 0;
+        transition: transform 0.2s ease;
+        &::after {
+          content: "\e616";
+          color: $default;
+          transition: color 0.4s ease;
+          -webkit-transition: color 0.4s ease;
+        }
+        &:checked,
+        &:hover {
+          transform: scale(1.2);
+          &::after {
+            content: "\e642";
+            color: $main;
+          }
+          & ~ input[name="rate"] {
+            &::after {
+              content: "\e642";
+              color: $main;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.form-box {
+  input {
+    display: flex;
+    flex-direction: column;
+    & + input {
+      margin-top: 10px;
+    }
+    &:valid {
+      & ~ button {
+        cursor: pointer;
+        pointer-events: all;
+        &::after {
+          content: "submit";
+        }
+      }
+    }
+    &:invalid {
+      & ~ button {
+        pointer-events: none;
+        &::after {
+          content: "validate not pass!";
+        }
+      }
+    }
+  }
+}
+
+.padding {
+  margin: 30px;
+  width: 200px;
+  background: red;
+  &::after {
+    content: "";
+    padding-top: 100%;
+  }
+}
+
+.move {
+  & > div {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background: #ffa822;
+    animation: move 2s linear infinite;
+    & + div {
+      margin-top: 10px;
+    }
+    &:nth-child(1) {
+      animation-direction: alternate;
+    }
+    &:nth-child(2) {
+      animation-direction: alternate-reverse;
+    }
+    &:nth-child(3) {
+      animation-direction: reverse;
+    }
+  }
+}
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(300px);
+  }
+}
+
+.chart {
+  width: 200px;
+  height: 200px;
+  margin: 30px;
+  border-radius: 100%;
+  background: #ffa822;
+}

@@ -32,12 +32,18 @@ module.exports = {
         include: path.join(__dirname, "../src")
       },
       {
-        test: /\.css$/,
-        rules: [
-          {
-            test: /\.css$/,
-            loader: "style-loader!css-loader"
-          }
+        test: /\.s?css$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          "sass-loader"
+          // {
+          //   loader: "style-loader!css-loader"
+          // },
+          // {
+          //   test: /\.scss$/,
+          //   loader: "style-loader!css-loader"
+          // }
         ]
       },
       {

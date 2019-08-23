@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { resolve } from "path";
-import { rejects } from "assert";
+import "./Home.scss";
 
 export default class Home extends Component {
   constructor(props) {
@@ -8,14 +7,20 @@ export default class Home extends Component {
     this.state = {
       count: 0
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit() {
+    console.log("submit");
   }
 
   testPromise(str) {
-    return new Promise((resolve, injected) => {
+    return new Promise((resolve, rejected) => {
       if (str) {
         resolve(str);
       }
-      injected("not a null~");
+      rejected("not a null~");
     });
   }
   _handleClick() {
@@ -38,6 +43,28 @@ export default class Home extends Component {
         this is home1211112~
         <p>当前记数值为：{this.state.count}</p>
         <button onClick={() => this._handleClick()}>加加</button>
+        <div className="rate-box">
+          <div className="rate-content">
+            <input type="radio" name="rate" />
+            <input type="radio" name="rate" />
+            <input type="radio" name="rate" />
+            <input type="radio" name="rate" />
+            <input type="radio" name="rate" />
+          </div>
+        </div>
+        <div className="form-box">
+          <input type="text" pattern="^1[3-9]\d{9}" required />
+          <input type="text" pattern="\d{4}" required />
+          <button onClick={this.handleSubmit} />
+        </div>
+        <div className="padding">说啥呢</div>
+        <div className="move">
+          <div />
+          <div />
+          <div />
+          <div />
+        </div>
+        <div className="chart" />
       </div>
     );
   }
